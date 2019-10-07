@@ -193,123 +193,123 @@ class TestDynamicArray(unittest.TestCase):
         a.append('FAKE')
         self.assertFalse(a.is_empty())
 
-    # def test_clear(self):
-    #     """
-    #     A cleared dynamic array is empty and has a length of 0.
-    #     """
-    #     a = DynamicArray()
-    #     a.append('FAKE')
-    #     a.append('FAKE')
-    #     self.assertFalse(a.is_empty())
-    #     a.clear()
-    #     self.assertTrue(a.is_empty())
-    #     self.assertEqual(0, len(a))
+    def test_clear(self):
+        """
+        A cleared dynamic array is empty and has a length of 0.
+        """
+        a = DynamicArray()
+        a.append('FAKE')
+        a.append('FAKE')
+        self.assertFalse(a.is_empty())
+        a.clear()
+        self.assertTrue(a.is_empty())
+        self.assertEqual(0, len(a))
 
-    # def test_len(self):
-    #     """
-    #     The length of a dynamic array is equal to the number of elements appended.
-    #     """
-    #     a = DynamicArray()
-    #     a.append('FAKE')
-    #     a.append('FAKE')
-    #     self.assertEqual(2, len(a))
+    def test_len(self):
+        """
+        The length of a dynamic array is equal to the number of elements appended.
+        """
+        a = DynamicArray()
+        a.append('FAKE')
+        a.append('FAKE')
+        self.assertEqual(2, len(a))
 
-    # """
-    # Invalid indexes
-    # """
+    """
+    Invalid indexes
+    """
 
-    # def test_negative_index(self):
-    #     """
-    #     Accessing with a negative index raises an IndexError
-    #     """
-    #     a = DynamicArray()
-    #     try:
-    #         a[-1]
-    #         self.fail("Did not raise IndexError: index out of range.")
-    #     except IndexError:
-    #         pass
+    def test_negative_index(self):
+        """
+        Accessing with a negative index raises an IndexError
+        """
+        a = DynamicArray()
+        try:
+            a[-1]
+            self.fail("Did not raise IndexError: index out of range.")
+        except IndexError:
+            pass
 
-    # def test_large_index(self):
-    #     """
-    #     Accessing with an index greater than or equal to the last index raises an IndexError
-    #     """
-    #     a = DynamicArray()
-    #     try:
-    #         a[0]
-    #         self.fail("Did not raise IndexError: index out of range.")
-    #     except IndexError:
-    #         pass
+    def test_large_index(self):
+        """
+        Accessing with an index greater than or equal to the last index raises an IndexError
+        """
+        a = DynamicArray()
+        try:
+            a[0]
+            self.fail("Did not raise IndexError: index out of range.")
+        except IndexError:
+            pass
 
-    # """
-    # Removing elements from the end
-    # """
+    """
+    Removing elements from the end
+    """
 
-    # def test_pop(self):
-    #     """
-    #     Popping removes and returns the last element
-    #     """
-    #     a = DynamicArray()
-    #     a.append('fee')
-    #     a.append('fi')
-    #     a.append('fo')
-    #     last_element = a.pop()
-    #     self.assertEqual('fo', last_element)
-    #     self.assertEqual(2, len(a))
+    def test_pop(self):
+        """
+        Popping removes and returns the last element
+        """
+        a = DynamicArray()
+        a.append('fee')
+        a.append('fi')
+        a.append('fo')
+        last_element = a.pop()
+        self.assertEqual('fo', last_element)
+        self.assertEqual(2, len(a))
 
-    # def test_pop_empty(self):
-    #     """
-    #     Popping from an empty list raises an IndexError: pop from empty array
-    #     """
-    #     a = DynamicArray()
-    #     try:
-    #         a.pop()
-    #         self.fail("Did not raise IndexError: index out of range.")
-    #     except IndexError:
-    #         pass
+    def test_pop_empty(self):
+        """
+        Popping from an empty list raises an IndexError: pop from empty array
+        """
+        a = DynamicArray()
+        try:
+            a.pop()
+            self.fail("Did not raise IndexError: index out of range.")
+        except IndexError:
+            pass
 
-    # """
-    # Deleting
-    # """
+    """
+    Deleting
+    """
 
-    # def test_delete_last(self):
-    #     """
-    #     Deleting the last element removes it from the dynamic array.
-    #     """
-    #     a = DynamicArray()
-    #     a.append('fee')
-    #     a.append('fi')
-    #     a.append('fo')
-    #     a.delete(2)
-    #     self.assertEqual(2, len(a))
-    #     self.assertEqual('fi', a.pop())
+    def test_delete_last(self):
+        """
+        Deleting the last element removes it from the dynamic array.
+        """
+        a = DynamicArray()
+        a.append('fee')
+        a.append('fi')
+        a.append('fo')
+        a.delete(2)
+        self.assertEqual(2, len(a))
+        self.assertEqual('fi', a.pop())
 
-    # def test_delete_invalid_index(self):
-    #     """
-    #     Deleting an out of bounds index raises an IndexError: index out of range
-    #     """
-    #     a = DynamicArray()
-    #     a.append('fee')
-    #     a.append('fi')
-    #     a.append('fo')
-    #     try:
-    #         a.delete(3)
-    #         a.delete(-1)
-    #         self.fail("Did not raise IndexError: index out of range.")
-    #     except IndexError:
-    #         pass
+    def test_delete_invalid_index(self):
+        """
+        Deleting an out of bounds index raises an IndexError: index out of range
+        """
+        a = DynamicArray()
+        a.append('fee')
+        a.append('fi')
+        a.append('fo')
+        try:
+            a.delete(3)
+            a.delete(-1)
+            self.fail("Did not raise IndexError: index out of range.")
+        except IndexError:
+            pass
 
-    # def test_delete_first(self):
-    #     """
-    #     Deleting the first element shifts remaining elements to the left.
-    #     """
-    #     a = DynamicArray()
-    #     a.append('fee')
-    #     a.append('fi')
-    #     a.append('fo')
-    #     a.delete(0)
-    #     self.assertEqual(2, len(a))
-    #     self.assertEqual('fi', a[0])
-    #     self.assertEqual('fo', a[1])
+    def test_delete_first(self):
+        """
+        Deleting the first element shifts remaining elements to the left.
+        """
+        a = DynamicArray()
+        a.append('fee')
+        a.append('fi')
+        a.append('fo')
+        a.delete(0)
+        self.assertEqual(2, len(a))
+        self.assertEqual('fi', a[0])
+        self.assertEqual('fo', a[1])
 
     # def test_delete_middle(self):
     #     """
