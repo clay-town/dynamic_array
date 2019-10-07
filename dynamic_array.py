@@ -7,13 +7,13 @@ import numpy as np
 
 class DynamicArray:
 
-    capacity = 10
-    n = 0
-    next_index = 0
-    arr = [0,0,0,0,0,0,0,0,0,0]
-    data = np.empty([10,1], dtype='O')
-    pass
-    
+    def __init__(self):
+        self.capacity = 10
+        self.n = 0
+        self.next_index = 0
+        self.arr = [0,0,0,0,0,0,0,0,0,0]
+        self.data = np.empty([10,1], dtype='O')
+
     def is_empty(self):
         if self.n == 0:
             return True
@@ -103,6 +103,8 @@ class DynamicArray:
         self.data = np.empty([self.capacity,1], dtype='O')    
         
     def max(self):
+        if self.n == 0:
+            return None
         highest = 0
         for x in range(len(self.arr)):
             if self.arr[x] > highest:
@@ -110,6 +112,8 @@ class DynamicArray:
         return highest
     
     def min(self):
+        if self.n == 0:
+            return None
         lowest = self.arr[0]
         for x in range(len(self.arr)):
             if self.arr[x] < lowest:
@@ -117,10 +121,23 @@ class DynamicArray:
         return lowest
     
     def sum(self):
-        print(self.arr)
-        self.arr.clear()
-        print(self.arr)
+        if self.n == 0:
+            return None
         sum = 0
         for x in range(len(self.arr)):
             sum = sum+int(self.arr[x])
         return sum
+    
+    def linear_search(self, des):
+        for x in range(len(self.arr)):
+            if self.arr[x] == des:
+                return x
+
+    def binary_search(self, des):
+        split = len(self.arr)/2
+        if self.arr[split] == des:
+            return split
+        
+        
+
+
