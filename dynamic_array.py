@@ -134,10 +134,36 @@ class DynamicArray:
                 return x
 
     def binary_search(self, des):
-        split = len(self.arr)/2
-        if self.arr[split] == des:
-            return split
+        desRange = self.arr
+        # split = int(len(desRange)/2)
+        # print("one    ",self.arr[split])
+        # desRange = desRange[split:len(desRange)]
+        # print("two    ", self.arr[int(len(desRange)/2)])    
         
+        size = self.n+1    
+        return self.myBinarySearch(des, desRange, size)
+            
+
+    def myBinarySearch(self, des, desRange, size):
+        split = int(size/2)
+        
+        if len(desRange)<8:
+          #  print(desRange)
+          #  print(split)
+          #  print(size)
+            if desRange[0] == des:
+                return 0
+            if desRange[1] == des:
+                return 1
+        #if len(desRange)<3
+        if desRange[split] == des:
+            return split
+        if des > desRange[split]:
+            desRange = desRange[split:size]
+        else:
+            desRange = desRange[0:split]
+        size = size-split
+        self.myBinarySearch(des, desRange, size)
         
 
 
